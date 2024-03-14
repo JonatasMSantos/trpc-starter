@@ -1,8 +1,7 @@
-import { boolean, integer, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { boolean, pgTable, text, uuid } from "drizzle-orm/pg-core";
 
 export const payment = pgTable("payment", {
-  id: integer("id").primaryKey(),
-  due_date: timestamp('due_date', { precision: 6, withTimezone: true }),
+  id: uuid('id').primaryKey().defaultRandom(),
   title: text("title").notNull(),
   note: text("note").notNull(),
   done: boolean("done").default(false).notNull(),

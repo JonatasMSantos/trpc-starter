@@ -8,6 +8,20 @@
       "when": 1710361517815,
       "tag": "0000_vengeful_sentry",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1710422239819,
+      "tag": "0001_left_tyrannus",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1710424019799,
+      "tag": "0002_perpetual_blonde_phantom",
+      "breakpoints": true
     }
   ]
 }
