@@ -19,6 +19,7 @@ export const UpdateValidator = z.object({
 
 export const appRouter = router({
   getPayments: publicProcedure.query(async () => {
+    await new Promise(resolve => setTimeout(resolve, 2000));
     return await db.select().from(payment);
   }),
 

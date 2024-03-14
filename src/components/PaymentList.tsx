@@ -10,21 +10,22 @@ interface PaymentListProps {
   initialPayments: PaymentType;
 }
 export const PaymentList = ({ initialPayments }: PaymentListProps) => {
-  const getPayments = trpc.getPayments.useQuery(undefined, {
-    initialData: initialPayments,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-  });
+  const { data, isLoading, fetchStatus, error, refetch, status, isFetching } =
+    trpc.getPayments.useQuery(undefined, {
+      initialData: initialPayments,
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+    });
 
   const addPayment = trpc.addPayment.useMutation({
     onSettled: () => {
-      getPayments.refetch();
+      refetch();
     },
   });
 
   const setDone = trpc.setDone.useMutation({
     onSettled: () => {
-      getPayments.refetch();
+      refetch();
     },
   });
 
@@ -37,7 +38,8 @@ export const PaymentList = ({ initialPayments }: PaymentListProps) => {
   return (
     <div>
       <div className="text-black my-5 text-3xl">
-        {getPayments?.data?.map((payment) => (
+        <div>{isFetching && !isLoading && <div>Loading</div>}</div>
+        {data?.map((payment) => (
           <div key={payment.id} className="flex gap-3 items-center">
             <input
               id={`check-${payment.id}`}
